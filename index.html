@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Payload Management & Mission Feasibility Analysis</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- =======================
+SIDEBAR
+======================= -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<h2>🚁 UAV SYSTEM</h2>
+
+</div>
+
+<ul>
+
+<li class="active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-helicopter"></i>
+
+<span>UAV Fleet</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-box"></i>
+
+<span>Payload</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-location-crosshairs"></i>
+
+<span>Mission Planner</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+<span>Risk Analysis</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Reports</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- =======================
+MAIN
+======================= -->
+
+<div class="main">
+
+<!-- =======================
+TOP NAVBAR
+======================= -->
+
+<div class="top-navbar">
+
+<div class="left-nav">
+
+<h2>
+
+🛰 UAV Mission Control Center
+
+</h2>
+
+</div>
+
+<div class="right-nav">
+
+<div class="nav-card">
+
+<span>Operator</span>
+
+<h4>Manish</h4>
+
+</div>
+
+<div class="nav-card">
+
+<span>Status</span>
+
+<h4 id="missionState">
+
+READY
+
+</h4>
+
+</div>
+
+<div class="nav-card">
+
+<span>Connection</span>
+
+<h4 class="online">
+
+● ONLINE
+
+</h4>
+
+</div>
+
+<div class="nav-card">
+
+<span>Time</span>
+
+<h4 id="clock">
+
+00:00:00
+
+</h4>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =======================
+WELCOME
+======================= -->
+
+<h1>
+
+Smart Payload Management & Mission Feasibility Analysis System
+
+</h1>
+
+<!-- =======================
+DASHBOARD CARDS
+======================= -->
+
+<div class="dashboard">
+
+<div class="card">
+
+<i class="fa-solid fa-helicopter"></i>
+
+<h3 id="totalUAV">
+
+3
+
+</h3>
+
+<p>Total UAV</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-box"></i>
+
+<h3 id="totalPayload">
+
+12
+
+</h3>
+
+<p>Total Payload</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-route"></i>
+
+<h3 id="missionCount">
+
+0
+
+</h3>
+
+<p>Mission Planned</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-battery-three-quarters"></i>
+
+<h3 id="batteryHealth">
+
+100%
+
+</h3>
+
+<p>Battery Health</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3 id="riskAlert">
+
+LOW
+
+</h3>
+
+<p>Risk Status</p>
+
+</div>
+
+</div>
+
+<!-- =======================
+MISSION + TELEMETRY SECTION
+======================= -->
+
+<div class="content-grid">
+
+    <!-- Mission Planner -->
+
+    <div class="planner">
+
+        <h2>
+            <i class="fa-solid fa-location-crosshairs"></i>
+            Mission Planner
+        </h2>
+
+        <label>Select UAV</label>
+
+        <select id="uavSelect">
+
+            <option value="5,25,100">
+                Eagle-X1
+            </option>
+
+            <option value="8,40,100">
+                Falcon-X2
+            </option>
+
+            <option value="12,60,100">
+                Hawk-X3
+            </option>
+
+        </select>
+
+        <label>Payload Weight (kg)</label>
+
+        <input
+        type="number"
+        id="payloadWeight"
+        placeholder="Enter Payload">
+
+        <label>Mission Distance (km)</label>
+
+        <input
+        type="number"
+        id="distance"
+        placeholder="Enter Distance">
+
+        <label>Payload Position (cm)</label>
+
+        <input
+        type="number"
+        id="payloadPosition"
+        placeholder="Enter Position">
+
+        <button onclick="analyzeMission()">
+
+            Analyze Mission
+
+        </button>
+
+    </div>
+
+    <!-- Telemetry -->
+
+    <div class="telemetry">
+
+        <h2>
+
+            <i class="fa-solid fa-satellite-dish"></i>
+
+            Live Telemetry
+
+        </h2>
+
+        <div class="telemetry-box">
+
+            <div class="telemetry-item">
+
+                <span>Altitude</span>
+
+                <h3 id="altitude">
+
+                    120 m
+
+                </h3>
+
+            </div>
+
+            <div class="telemetry-item">
+
+                <span>Speed</span>
+
+                <h3 id="speed">
+
+                    45 km/h
+
+                </h3>
+
+            </div>
+
+            <div class="telemetry-item">
+
+                <span>Battery</span>
+
+                <h3 id="telemetryBattery">
+
+                    100%
+
+                </h3>
+
+            </div>
+
+            <div class="telemetry-item">
+
+                <span>GPS</span>
+
+                <h3>
+
+                    🟢 LOCKED
+
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================
+MISSION RESULT
+======================= -->
+
+<div class="result">
+
+    <h2>
+
+        Mission Analysis Result
+
+    </h2>
+
+    <p>
+
+        Payload Status :
+
+        <span id="payloadStatus"></span>
+
+    </p>
+
+    <p>
+
+        Battery Status :
+
+        <span id="batteryStatus"></span>
+
+    </p>
+
+    <p>
+
+        Risk Level :
+
+        <span id="riskLevel"></span>
+
+    </p>
+
+    <p>
+
+        Center of Gravity :
+
+        <span id="cgValue"></span>
+
+    </p>
+
+    <p>
+
+        CG Status :
+
+        <span id="cgStatus"></span>
+
+    </p>
+
+    <p>
+
+        Mission Status :
+
+        <span id="missionStatus"></span>
+
+    </p>
+
+</div>
+
+<!-- =======================
+BATTERY PANEL
+======================= -->
+
+<div class="battery-panel">
+
+    <h2>
+
+        Battery Health
+
+    </h2>
+
+    <div class="battery-bar">
+
+        <div
+        id="batteryFill"
+        class="battery-fill">
+
+        </div>
+
+    </div>
+
+    <h3 id="batteryPercent">
+
+        100%
+
+    </h3>
+
+</div>
+
+<!-- =======================
+RISK METER
+======================= -->
+
+<div class="risk-container">
+
+    <h2>
+
+        Mission Risk Meter
+
+    </h2>
+
+    <div class="gauge">
+
+        <div class="gauge-body">
+
+            <div
+            class="gauge-fill"
+            id="gaugeFill">
+
+            </div>
+
+            <div
+            class="gauge-cover"
+            id="riskPercent">
+
+                0%
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================
+CG VISUALIZATION
+======================= -->
+
+<div class="cg-panel">
+
+    <h2>
+
+        Center of Gravity Visualization
+
+    </h2>
+
+    <div class="cg-track">
+
+        <div
+        class="cg-point"
+        id="cgPoint">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================
+MISSION HISTORY
+======================= -->
+
+<div class="history">
+
+    <h2>
+
+        Mission History
+
+    </h2>
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>UAV</th>
+
+            <th>Payload</th>
+
+            <th>Distance</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody id="historyTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+<!-- =======================
+MISSION ANALYTICS
+======================= -->
+
+<div class="analytics">
+
+    <h2>
+        <i class="fa-solid fa-chart-line"></i>
+        Mission Analytics
+    </h2>
+
+    <div class="dashboard">
+
+        <div class="card">
+            <h3 id="approvedMission">0</h3>
+            <p>Approved Missions</p>
+        </div>
+
+        <div class="card">
+            <h3 id="rejectedMission">0</h3>
+            <p>Rejected Missions</p>
+        </div>
+
+        <div class="card">
+            <h3 id="avgRisk">LOW</h3>
+            <p>Average Risk</p>
+        </div>
+
+        <div class="card">
+            <h3 id="batteryAvg">100%</h3>
+            <p>Average Battery</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================
+MISSION CHART
+======================= -->
+
+<div class="history">
+
+    <h2>
+
+        Mission Statistics
+
+    </h2>
+
+    <canvas id="missionChart" height="120"></canvas>
+
+</div>
+
+<!-- =======================
+REPORTS
+======================= -->
+
+<div class="history">
+
+    <h2>
+
+        Generate Report
+
+    </h2>
+
+    <button id="downloadPdf">
+
+        📄 Download Mission Report
+
+    </button>
+
+    <button id="exportCSV">
+
+        📊 Export CSV
+
+    </button>
+
+</div>
+
+<!-- =======================
+FOOTER
+======================= -->
+
+<footer class="footer">
+
+    <h3>
+
+        Smart Payload Management &
+        Mission Feasibility Analysis System
+
+    </h3>
+
+    <p>
+
+        ADRDE Internship Project
+
+    </p>
+
+    <p>
+
+        Developed by Manish Pippal
+
+    </p>
+
+</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
